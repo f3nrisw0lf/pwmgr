@@ -1,17 +1,16 @@
-const { AES, enc } = require('crypto-js');
+const { AES } = require('crypto-js');
 
-const encryptPassword = (req, res) => {
-	const password = '123';
-	const ciphertext = AES.encrypt(password, 'SECRET');
-	const decrypt = AES.decrypt(ciphertext, 'SECRET');
-	const decryptString = JSON.parse(decrypt.toString(enc.Utf8));
-	res.json({
-		password: password,
-		encrypted: ciphertext.toString(),
-		decrypted: decryptString,
+const saveEncryptedPasswords = (req, res) => {
+	const { passwords } = res.data;
+
+	// Get User Secret or Salt
+
+	passwords.forEach((password) => {
+		// Save in database
+		AES.encrypt(password, secret);
 	});
 };
 
 module.exports = {
-	encryptPassword,
+	saveEncryptedPasswords,
 };
