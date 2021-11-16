@@ -10,6 +10,19 @@ const userSchema = new Schema({
 	password: requiredString,
 	secret: requiredString,
 	dateOfCreation: Date,
+	passwords: [
+		{
+			_id: String,
+			urls: [
+				{
+					host: String,
+				},
+			],
+			username: String,
+			password: String,
+			dateCreated: Date,
+		},
+	],
 });
 
 const User = mongoose.model('User', userSchema);
