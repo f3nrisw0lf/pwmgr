@@ -33,10 +33,22 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
 	// Check in the Database
-	// Create SessionID then Save it in the Database
-	// res.json(SessionID)
+	const { email, password } = req.body;
+
+	try {
+		const query = await User.findOne({ email: email });
+
+		if (!query) return res.json('Email not Found');
+
+		if (await argon2.verify(query.password, password)) return res.json('AUTH SUCCESSFUL');
+
+		return res.json('Incorrect Password');
+	} catch {
+		res.json('ERROR');
+	}
 };
 
 module.exports = {
 	signup,
+	login,
 };
