@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const requiredString = { type: String, required: true };
 
 const sessionSchema = new Schema({
-	UserID: requiredString,
+	UserID: String,
 });
 
 const Session = mongoose.model('Session', sessionSchema);
