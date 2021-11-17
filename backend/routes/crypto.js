@@ -1,8 +1,8 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
-const { saveEncryptedPasswords } = require('../controller/cryptoController.js');
+import { saveEncryptedPasswords } from '../controller/cryptoController.js';
 
 router.post('/encrypt', saveEncryptedPasswords);
 
-module.exports = router;
+export default router;

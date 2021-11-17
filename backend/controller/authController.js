@@ -1,18 +1,18 @@
-const argon2 = require('argon2');
-const User = require('../model/User.js');
+import { hash as _hash } from 'argon2';
+import User from '../model/User.js';
 
 const signup = async (req, res) => {
 	const { fname, lname, nickname, email, password } = req.body;
 
 	// Transfrom to Hash
-	const hash = await argon2.hash(password);
-	const secret = await argon2.hash(hash);
+	const hash = await _hash(password);
+	const secret = await _hash(hash);
 
 	// Save to Database
 	try {
-		const isNotExisting = !(await User.exists({ email: email }));
+		const isUserNotExisting = !(await User.exists({ email: email }));
 
-		if (isNotExisting) {
+		if (isUserNotExisting) {
 			const query = new User({
 				fname: fname,
 				lname: lname,
@@ -23,7 +23,6 @@ const signup = async (req, res) => {
 			});
 
 			const save = await query.save();
-			// const response = await argon2.verify(hash, passwords[0].password);
 			await res.json(save);
 		} else res.json('Existing');
 	} catch {
@@ -36,19 +35,9 @@ const login = async (req, res) => {
 	const { email, password } = req.body;
 
 	try {
-		const query = await User.findOne({ email: email });
-
-		if (!query) return res.json('Email not Found');
-
-		if (await argon2.verify(query.password, password)) return res.json('AUTH SUCCESSFUL');
-
-		return res.json('Incorrect Password');
 	} catch {
 		res.json('ERROR');
 	}
 };
 
-module.exports = {
-	signup,
-	login,
-};
+export { signup, login };

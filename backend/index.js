@@ -1,28 +1,37 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
+import express, { json } from 'express';
+import session from 'express-session';
+import cors from 'cors';
+import passport from './middleware/passport.js';
 
-require('dotenv').config();
-const { MONGO_URI } = process.env;
+import { DB_CONNECTION } from './middleware/database.js';
+import MongoStore from 'connect-mongo';
 
-mongoose.connect('mongodb://localhost:27017/pwmgr', {
-	useUnifiedTopology: true,
-});
+import auth from './routes/auth.js';
+import crypto from './routes/crypto.js';
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-	console.log('CONNECTED!');
-});
+import dotenv from 'dotenv';
+dotenv.config();
+const { PORT = 5050, SECRET } = process.env;
 
 const app = express();
-const PORT = process.env.port || 5050;
-
-const crypto = require('./routes/crypto.js');
-const auth = require('./routes/auth.js');
-
 app.use(cors());
-app.use(express.json());
+app.use(json());
+app.use(
+	session({
+		secret: SECRET,
+		resave: false,
+		saveUninitialized: false,
+		store: MongoStore.create({
+			client: DB_CONNECTION,
+			mongoOptions: {
+				useUnifiedTopology: true,
+			},
+		}),
+	}),
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', (req, res) => {
 	res.json({ asdasdasd: 'ASDASD' });
@@ -31,5 +40,5 @@ app.use('/crypto', crypto);
 app.use('/auth', auth);
 
 app.listen(PORT, () => {
-	console.log(`Running in Port: https://localhost:${PORT}`);
+	console.log(`Running in Port: http://localhost:${PORT}`);
 });
