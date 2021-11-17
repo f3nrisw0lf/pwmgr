@@ -5,14 +5,17 @@ const { Schema } = mongoose;
 const requiredString = { type: String, required: true };
 
 const userSchema = new Schema({
-	name: String,
-	username: requiredString,
+	fname: String,
+	lname: String,
+	nickname: String,
+	email: requiredString,
 	password: requiredString,
 	secret: requiredString,
 	dateOfCreation: Date,
 	passwords: [
 		{
 			_id: String,
+			name: String,
 			urls: [
 				{
 					host: String,

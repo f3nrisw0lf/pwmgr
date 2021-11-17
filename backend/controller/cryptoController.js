@@ -1,16 +1,19 @@
 const { AES, enc } = require('crypto-js');
+const argon2 = require('argon2');
 
-const saveEncryptedPasswords = (req, res) => {
-	const { passwords } = res.data;
-
+const saveEncryptedPasswords = async (req, res) => {
+	const { passwords } = req.body;
 	// Get User Secret or Salt
 
-	const response = passwords.map((password) => {
-		// Save in database
-		AES.encrypt(password, secret);
-	});
+	const hash = await argon2.hash(passwords[0].password);
+	// // const response = passwords.map((password) => {
+	// // 	// Save in database
+	// // 	AES.encrypt(password, secret);
+	// // });
 
-	res.json(response);
+	// await console.log(hash);
+	const response = await argon2.verify(hash, passwords[0].password);
+	await res.json(response);
 };
 
 const decrypt = (password, secret) => {
