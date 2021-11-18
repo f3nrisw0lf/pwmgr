@@ -1,12 +1,13 @@
 import passport from 'passport';
+import argon2 from 'argon2';
 import { Strategy as LocalStrategy } from 'passport-local';
 
 import User from '../model/User.js';
 
 passport.use(
-	new LocalStrategy(async (email, password, cb) => {
+	new LocalStrategy(async (username, password, cb) => {
 		try {
-			const query = User.findOne({ email: email });
+			const query = await User.findOne({ email: username });
 
 			// If User is not found
 			if (!query) return cb(null, false);
@@ -20,5 +21,17 @@ passport.use(
 		}
 	}),
 );
+
+passport.serializeUser((user, cb) => {
+	cb(null, user._id);
+});
+
+passport.deserializeUser((userID, cb) => {
+	User.findById(userID, (err, user) => {
+		if (err) return cb(err);
+
+		cb(null, user);
+	});
+});
 
 export default passport;

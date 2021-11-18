@@ -30,14 +30,10 @@ const signup = async (req, res) => {
 	}
 };
 
-const login = async (req, res) => {
-	// Check in the Database
-	const { email, password } = req.body;
-
-	try {
-	} catch {
-		res.json('ERROR');
-	}
+const logout = (req, res) => {
+	req.logout();
+	console.log(req.isAuthenticated());
+	res.redirect('/auth/login');
 };
 
-export { signup, login };
+export { signup, logout };

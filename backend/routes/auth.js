@@ -1,8 +1,26 @@
 import { Router } from 'express';
-import { signup, login } from '../controller/authController.js';
+import { signup, logout } from '../controller/authController.js';
+import passport from '../config/passport.js';
 
 const router = Router();
+
 router.post('/signup', signup);
-router.post('/login', login);
+
+router.get('/login-failed', (req, res) => {
+	return res.json('Login Failed');
+});
+
+router.get('/login-success', (req, res) => {
+	return res.json('Login Successful');
+});
+
+router.get('/logout', logout);
+router.post(
+	'/login',
+	passport.authenticate('local', {
+		failureRedirect: '/auth/login-failed',
+		successRedirect: '/auth/login-success',
+	}),
+);
 
 export default router;
