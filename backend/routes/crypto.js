@@ -1,8 +1,8 @@
 import { Router } from 'express';
+import { saveEncryptedPasswords, decrypt } from '../controller/cryptoController.js';
 const router = Router();
 
-import { saveEncryptedPasswords } from '../controller/cryptoController.js';
-
 router.post('/encrypt', saveEncryptedPasswords);
+router.get('/decrypt', decrypt);
 
 export default router;

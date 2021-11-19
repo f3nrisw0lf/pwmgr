@@ -1,25 +1,30 @@
-import { hash as _hash, verify } from 'argon2';
+import User from '../model/User.js';
 import crypto from 'crypto-js';
 const { AES, enc } = crypto;
 
 const saveEncryptedPasswords = async (req, res) => {
 	const { passwords } = req.body;
 	// Get User Secret or Salt
+	const userSecret = 'ASDASD'; // SUPPOSED TO BE USER SECRET AFTER LOGIN
 
-	const hash = await _hash(passwords[0].password);
-	// // const response = passwords.map((password) => {
-	// // 	// Save in database
-	// // 	AES.encrypt(password, secret);
-	// // });
+	const ciphered = passwords.map(({ name, username, password, urls }) => {
+		const cipher = AES.encrypt(password, userSecret);
 
-	// await console.log(hash);
-	const response = await verify(hash, passwords[0].password);
-	await res.json(response);
+		return { cipherText: cipher.toString(), name: name, username, username, urls: urls };
+	});
+
+	await res.json(ciphered);
 };
 
-const decrypt = (password, secret) => {
-	const decrypted = AES.decrypt(password, secret);
-	return JSON.parse(decrypted.toString(enc.Utf8));
+const decrypt = (req, res) => {
+	const { passwords } = req.body;
+
+	const decryptedPasswords = passwords.map(({ cipherText }) => {
+		const decrypted = AES.decrypt(cipherText, 'ASDASD');
+		return decrypted.toString(enc.Utf8);
+	});
+
+	res.json(decryptedPasswords);
 };
 
-export { saveEncryptedPasswords };
+export { saveEncryptedPasswords, decrypt };
