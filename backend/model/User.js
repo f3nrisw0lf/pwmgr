@@ -16,11 +16,7 @@ const userSchema = new Schema({
     {
       _id: String,
       name: String,
-      urls: [
-        {
-          host: String,
-        },
-      ],
+      urls: [String],
       username: String,
       password: String,
       dateCreated: Date,

@@ -2,9 +2,9 @@ import express, { json } from 'express';
 import cors from 'cors';
 import MongoStore from 'connect-mongo';
 import session from 'express-session';
-import passport from './passport';
+import passport from './passport.js';
 
-import DB_CONNECTION from './database';
+import DB_CONNECTION from './database.js';
 
 const { SECRET = 'SECRET' } = process.env;
 const app = express();

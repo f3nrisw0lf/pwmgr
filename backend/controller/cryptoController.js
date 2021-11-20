@@ -2,8 +2,7 @@ import crypto from 'crypto-js';
 
 const { AES, enc } = crypto;
 
-const saveEncryptedPasswords = async (req, res) => {
-  const { passwords } = req.body;
+const encryptPasswords = (passwords) => {
   // Get User Secret or Salt
   const userSecret = 'ASDASD'; // SUPPOSED TO BE USER SECRET AFTER LOGIN
 
@@ -13,14 +12,14 @@ const saveEncryptedPasswords = async (req, res) => {
     const cipher = AES.encrypt(password, userSecret);
 
     return {
-      cipherText: cipher.toString(),
+      password: cipher.toString(),
       name,
       username,
       urls,
     };
   });
 
-  await res.json(ciphered);
+  return ciphered;
 };
 
 const decrypt = (req, res) => {
@@ -34,4 +33,4 @@ const decrypt = (req, res) => {
   res.json(decryptedPasswords);
 };
 
-export { saveEncryptedPasswords, decrypt };
+export { encryptPasswords, decrypt };

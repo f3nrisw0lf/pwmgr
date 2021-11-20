@@ -1,5 +1,5 @@
 import { hash as _hash } from 'argon2';
-import User from '../model/User';
+import User from '../model/User.js';
 
 const signup = async (req, res) => {
   const {
