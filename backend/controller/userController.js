@@ -14,7 +14,7 @@ const savePasswords = async (req, res) => {
 
   const query = await User.findByIdAndUpdate(
     { _id: userID },
-    { $push: { passwords: ciphered } }
+    { $push: { passwords: ciphered } },
   );
 
   res.json(JSON.stringify(await query));
@@ -31,4 +31,13 @@ const decrypt = (req, res) => {
   res.json(decryptedPasswords);
 };
 
-export { savePasswords, decrypt };
+const getUserData = async (req, res) => {
+  if (req.isAuthenticated()) {
+    const userID = req.session.passport.user;
+    return res.json(await User.findById(userID));
+  } else {
+    console.log('NOT AUTH');
+  }
+};
+
+export { savePasswords, decrypt, getUserData };

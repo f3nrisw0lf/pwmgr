@@ -11,6 +11,7 @@ router.get('/login-failed', (req, res) => res.json('Login Failed'));
 router.get('/login-success', (req, res) => res.json('Login Successful'));
 
 router.get('/logout', logout);
+
 router.post(
   '/login',
   passport.authenticate('local', {
