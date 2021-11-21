@@ -1,4 +1,5 @@
 import crypto from 'crypto-js';
+import mongoose from 'mongoose';
 
 const { AES, enc } = crypto;
 
@@ -12,6 +13,7 @@ const encryptPasswords = (passwords) => {
     const cipher = AES.encrypt(password, userSecret);
 
     return {
+      _id: mongoose.Types.ObjectId(),
       password: cipher.toString(),
       name,
       username,

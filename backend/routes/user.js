@@ -4,7 +4,9 @@ import { savePasswords, decrypt, getUserData } from '../controller/userControlle
 const router = Router();
 
 router.post('/add-password', savePasswords);
+
 router.get('/decrypt-password', decrypt);
+
 router.get('/user-data', getUserData);
 
 export default router;

@@ -23,12 +23,10 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.4.1"
   }
 }

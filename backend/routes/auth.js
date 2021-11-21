@@ -6,9 +6,9 @@ const router = Router();
 
 router.post('/signup', signup);
 
-router.get('/login-failed', (req, res) => res.json('Login Failed'));
+router.get('/login-failed', (_req, res) => res.json('Login Failed'));
 
-router.get('/login-success', (req, res) => res.json('Login Successful'));
+router.get('/login-success', (_req, res) => res.json('Login Successful'));
 
 router.get('/logout', logout);
 
