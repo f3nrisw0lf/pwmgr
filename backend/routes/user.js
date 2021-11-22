@@ -1,9 +1,17 @@
 import { Router } from 'express';
-import { savePasswords, decrypt, getUserData } from '../controller/userController.js';
+
+import {
+  savePasswords,
+  decrypt,
+  getUserData,
+  deletePassword,
+} from '../controller/userController.js';
 
 const router = Router();
 
 router.post('/add-password', savePasswords);
+
+router.post('/delete-password', deletePassword);
 
 router.get('/decrypt-password', decrypt);
 

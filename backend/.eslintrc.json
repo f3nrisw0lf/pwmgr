@@ -4,8 +4,7 @@
         "es2021": true
     },
     "extends": [
-        "airbnb-base",
-        "node"
+        "airbnb-base"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",

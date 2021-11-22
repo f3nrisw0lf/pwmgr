@@ -20,16 +20,16 @@ const savePasswords = async (req, res) => {
   res.json(JSON.stringify(await query));
 };
 
-const deletePassword = (req, res) => {
+const deletePassword = async (req, res) => {
   const { passwordID } = req.body;
   const userID = req.session.passport.user;
 
-  const query = User.findOneAndUpdate(
+  const query = await User.findOneAndUpdate(
     { _id: userID },
     { $pull: { passwords: { _id: passwordID } } },
   );
 
-  return res.json(query);
+  return res.json(await query);
 };
 
 const decrypt = (req, res) => {
@@ -48,7 +48,7 @@ const getUserData = async (req, res) => {
     const userID = req.session.passport.user;
     return res.json(await User.findById(userID));
   }
-  console.log('NOT AUTH');
+  return res.json('NOT AUTH');
 };
 
 export {
