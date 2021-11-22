@@ -8,16 +8,25 @@ const { AES, enc } = crypto;
 const savePasswords = async (req, res) => {
   const { passwords } = req.body;
   // Get User Secret or Salt
-  const userSecret = 'ASDASD'; // SUPPOSED TO BE USER SECRET AFTER LOGIN
-  const userID = '6198f379f4707d001e9cee51'; // SUPOSSED TO BE USER ID THAT'S LOGGED IN
-  const ciphered = encryptPasswords(passwords, userSecret);
+  // const userSecret = 'ASDASD'; // SUPPOSED TO BE USER SECRET AFTER LOGIN
+  // const userID = '6198f379f4707d001e9cee51'; // SUPOSSED TO BE USER ID THAT'S LOGGED IN
 
-  const query = await User.findByIdAndUpdate(
-    { _id: userID },
-    { $push: { passwords: ciphered } },
-  );
+  const userID = req.session.passport.user;
 
-  res.json(JSON.stringify(await query));
+  // If there is User that's Logged
+  if (userID) {
+    const { secret } = await User.findById(userID);
+    const ciphered = encryptPasswords(passwords, secret);
+
+    const query = await User.findByIdAndUpdate(
+      { _id: userID },
+      { $push: { passwords: ciphered } },
+    );
+
+    return res.json(JSON.stringify(await query));
+  }
+
+  return res.json('NOT AUTH');
 };
 
 const deletePassword = async (req, res) => {
@@ -30,6 +39,17 @@ const deletePassword = async (req, res) => {
   );
 
   return res.json(await query);
+};
+
+const updatePassword = async (req, res) => {
+  const { password } = req.body;
+  const query = await User.findOneAndUpdate(
+    // eslint-disable-next-line no-underscore-dangle
+    { 'passwords._id': password._id },
+    { $set: { 'passwords.$': password } },
+  );
+
+  return res.json(query);
 };
 
 const decrypt = (req, res) => {
@@ -56,4 +76,5 @@ export {
   decrypt,
   getUserData,
   deletePassword,
+  updatePassword,
 };
