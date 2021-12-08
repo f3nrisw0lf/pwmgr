@@ -33,6 +33,7 @@
                 "namedComponents": "arrow-function",
                 "unnamedComponents": "arrow-function"
             }
-        ]
+        ],
+        "react/prop-types": [0]
     }
 }
