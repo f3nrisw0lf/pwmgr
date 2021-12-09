@@ -1,13 +1,13 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-const LoginForm = () => {
+const SignupForm = () => {
   return (
-    <Form className="card p-4">
+    <Form className="card m-2 p-4">
       <h1 className="text-center fw-bold">Login</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" name="email" placeholder="Enter email" required />
+        <Form.Label>Email Address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" />
         <Form.Text className="text-muted">
           We&apos;ll never share your email with anyone else.
         </Form.Text>
@@ -15,10 +15,10 @@ const LoginForm = () => {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" name="password" placeholder="Password" required />
+        <Form.Control type="password" placeholder="Password" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" name="rememberMe" label="Remember me" />
+        <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit
@@ -27,4 +27,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
