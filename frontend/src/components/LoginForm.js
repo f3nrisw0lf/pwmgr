@@ -1,14 +1,17 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import useInput from '../hooks/useInput';
+import useLoginUser from '../hooks/useLoginUser';
 
 const LoginForm = () => {
   const [getEmail, setEmail] = useInput('');
   const [getPassword, setPassword] = useInput('');
+  const { mutate, isLoading } = useLoginUser();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(getEmail, getPassword);
+    mutate({ username: getEmail, password: getPassword });
   };
 
   return (
@@ -27,7 +30,6 @@ const LoginForm = () => {
           We&apos;ll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
@@ -44,6 +46,7 @@ const LoginForm = () => {
       <Button variant="primary" type="submit">
         Submit
       </Button>
+      <Link to="/signup">Sign-up now!</Link>
     </Form>
   );
 };
