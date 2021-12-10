@@ -19,10 +19,7 @@ const App = () => {
           <Route path="/" element={<Password />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
-          <Route
-            path="/home"
-            element={<PrivateRoute session={session} component={<Home />} />}
-          />
+          <Route path="/home" element={<PrivateRoute component={<Home />} />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

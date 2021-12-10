@@ -1,27 +1,23 @@
 import { useState, React } from 'react';
 import { Card, Modal, Button } from 'react-bootstrap';
 
-const Password = () => {
+const Password = ({ password }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
-    <>
+    <li key="_id">
       <Button variant="primary" onClick={handleShow}>
-        Password Website
+        {password.name}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Card body>
-          <Card.Title>Website</Card.Title>
-          This is some text within a card body.
+          <Card.Title>{password.name}</Card.Title>
         </Card>
-        <Modal.Header closeButton>
-          <Modal.Title>Password Title</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you&apos;re reading this text in a modal!</Modal.Body>
+        <Modal.Body>Password: {password.password}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -31,7 +27,7 @@ const Password = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </li>
   );
 };
 
