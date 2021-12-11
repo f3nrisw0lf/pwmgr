@@ -8,26 +8,30 @@ const Password = ({ password }) => {
   const handleShow = () => setShow(true);
 
   return (
-    <li key="_id">
-      <Button variant="primary" onClick={handleShow}>
-        {password.name}
-      </Button>
+    <>
+      {password && (
+        <li key="_id">
+          <Button variant="primary" onClick={handleShow}>
+            {password.name}
+          </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <Card body>
-          <Card.Title>{password.name}</Card.Title>
-        </Card>
-        <Modal.Body>Password: {password.password}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </li>
+          <Modal show={show} onHide={handleClose}>
+            <Card body>
+              <Card.Title>{password.name}</Card.Title>
+            </Card>
+            <Modal.Body>Password: {password.password}</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </li>
+      )}
+    </>
   );
 };
 
