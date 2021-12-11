@@ -2,9 +2,7 @@ import { hash as _hash } from 'argon2';
 import User from '../model/User.js';
 
 const signup = async (req, res) => {
-  const {
-    fname, lname, nickname, email, password,
-  } = req.body;
+  const { fname, lname, nickname, email, password } = req.body;
 
   // Transfrom to Hash
   const hash = await _hash(password);
@@ -33,9 +31,10 @@ const signup = async (req, res) => {
 };
 
 const logout = (req, res) => {
+  // console.log(req.session.passport.user);
   req.logout();
-  console.log(req.isAuthenticated());
-  res.redirect('/auth/login');
+  res.json({ message: 'Logged Out' });
+  // console.log(req.session.passport.user);
 };
 
 export { signup, logout };

@@ -6,9 +6,9 @@ const router = Router();
 
 router.post('/signup', signup);
 
-router.get('/login-failed', (_req, res) => res.json('Login Failed'));
+router.get('/login-failed', (req, res) => res.json('failed'));
 
-router.get('/login-success', (_req, res) => res.json('Login Successful'));
+router.get('/login-success', (req, res) => res.json(req.session));
 
 router.get('/logout', logout);
 
@@ -17,7 +17,7 @@ router.post(
   passport.authenticate('local', {
     failureRedirect: '/auth/login-failed',
     successRedirect: '/auth/login-success',
-  }),
+  })
 );
 
 export default router;

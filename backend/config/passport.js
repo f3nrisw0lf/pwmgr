@@ -19,7 +19,7 @@ passport.use(
     } catch (error) {
       return cb(error);
     }
-  }),
+  })
 );
 
 passport.serializeUser(({ _id: userID }, cb) => {
