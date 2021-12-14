@@ -1,7 +1,11 @@
 import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import Cookies from 'js-cookie';
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import getLogout from '../hooks/useLogout';
 
 const Navigation = () => {
+  const { mutate, isLoading } = getLogout();
+
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -12,6 +16,11 @@ const Navigation = () => {
             <Nav.Link href="#features">Features</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
+          {Cookies.get('user') != null ? (
+            <Button onClick={() => mutate()}>Logout</Button>
+          ) : (
+            <Button> Login </Button>
+          )}
         </Container>
       </Navbar>
     </>
