@@ -16,6 +16,7 @@ export default function useLoginUser() {
       onSuccess: (data) => {
         Cookies.set('user', JSON.stringify(data), {
           expires: 365,
+          sameSite: 'Lax',
         });
       },
     }

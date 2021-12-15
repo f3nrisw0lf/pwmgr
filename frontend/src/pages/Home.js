@@ -5,7 +5,6 @@ import useGetUser from '../hooks/useGetUser';
 const Home = () => {
   const { data, status } = useGetUser();
 
-  if (status === 'success') console.log(data.passwords);
   return (
     <div>
       <ul>

@@ -1,14 +1,19 @@
-import React from 'react';
-import Cookies from 'js-cookie';
+import { React, useContext, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
 import useLoginUser from '../hooks/useLoginUser';
+import { UserContext } from '../helper/UserContext';
 
 const LoginForm = () => {
   const [getEmail, setEmail] = useInput('');
   const [getPassword, setPassword] = useInput('');
-  const { mutate, isLoading } = useLoginUser();
+  const { mutate, isSuccess } = useLoginUser();
+  const { user, refreshUser } = useContext(UserContext);
+
+  useEffect(() => {
+    refreshUser();
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +22,7 @@ const LoginForm = () => {
 
   return (
     <>
-      {Cookies.get('user') ? (
+      {user ? (
         <Navigate to="/home" />
       ) : (
         <Form className="card p-4 m-4" onSubmit={handleSubmit}>

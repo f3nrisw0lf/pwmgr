@@ -1,10 +1,20 @@
-import React from 'react';
-import Cookies from 'js-cookie';
+import { React, useContext, useEffect } from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import getLogout from '../hooks/useLogout';
+import { UserContext } from '../helper/UserContext';
 
 const Navigation = () => {
-  const { mutate, isLoading } = getLogout();
+  const { mutate, isSuccess } = getLogout();
+  const { user, refreshUser } = useContext(UserContext);
+
+  useEffect(() => {
+    refreshUser();
+  });
+
+  const logout = () => {
+    mutate();
+  };
 
   return (
     <>
@@ -16,10 +26,12 @@ const Navigation = () => {
             <Nav.Link href="#features">Features</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
-          {Cookies.get('user') != null ? (
-            <Button onClick={() => mutate()}>Logout</Button>
+          {user ? (
+            <Button onClick={logout}>Logout</Button>
           ) : (
-            <Button> Login </Button>
+            <Link to="/login">
+              <Button>Login</Button>
+            </Link>
           )}
         </Container>
       </Navbar>

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 
 import ClientProvider from './helper/ClientProvider';
+import { UserProvider } from './helper/UserContext';
 import LoginForm from './components/LoginForm';
 import Password from './components/Password';
 import Home from './pages/Home';
@@ -14,13 +15,15 @@ const App = () => {
   return (
     <QueryClientProvider client={ClientProvider}>
       <BrowserRouter>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Password />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignupForm />} />
-          <Route path="/home" element={<PrivateRoute component={<Home />} />} />
-        </Routes>
+        <UserProvider>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Password />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupForm />} />
+            <Route path="/home" element={<PrivateRoute component={<Home />} />} />
+          </Routes>
+        </UserProvider>
       </BrowserRouter>
     </QueryClientProvider>
   );
