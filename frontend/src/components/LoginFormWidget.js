@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
 const LoginForm = (props) => {
-  const { handleSubmit, setEmail, setPassword } = props;
+  const { handleSubmit, register } = props;
 
   return (
     <>
@@ -12,11 +12,8 @@ const LoginForm = (props) => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            type="email"
-            name="email"
-            placeholder="Enter email"
-            onChange={setEmail}
-            required
+            placeholder="Enter Email"
+            {...register('email', { required: true })}
           />
           <Form.Text className="text-muted">
             We&apos;ll never share your email with anyone else.
@@ -26,10 +23,8 @@ const LoginForm = (props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            name="password"
-            placeholder="Password"
-            onChange={setPassword}
-            required
+            placeholder="Enter Password"
+            {...register('password', { required: true })}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
