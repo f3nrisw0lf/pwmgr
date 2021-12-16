@@ -14,10 +14,11 @@ export default function useLoginUser() {
         .then((res) => res.data),
     {
       onSuccess: (data) => {
-        Cookies.set('user', JSON.stringify(data), {
-          expires: 365,
-          sameSite: 'Lax',
-        });
+        if (data != 'failed')
+          Cookies.set('user', JSON.stringify(data), {
+            expires: 365,
+            sameSite: 'Lax',
+          });
       },
     }
   );

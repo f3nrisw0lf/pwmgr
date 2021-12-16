@@ -1,5 +1,5 @@
 import { useState, React } from 'react';
-import { Card, Modal, Button } from 'react-bootstrap';
+import { Card, Modal, Button, ListGroupItem } from 'react-bootstrap';
 
 const Password = ({ password }) => {
   const [show, setShow] = useState(false);
@@ -10,9 +10,11 @@ const Password = ({ password }) => {
   return (
     <>
       {password && (
-        <li key="_id">
-          <Button variant="primary" onClick={handleShow}>
+        <ListGroupItem className="d-grid gap-2" key={password._id}>
+          <Button variant="secondary" size="lg" onClick={handleShow}>
             {password.name}
+            <br></br>
+            {password.urls[0]}
           </Button>
 
           <Modal show={show} onHide={handleClose}>
@@ -29,7 +31,7 @@ const Password = ({ password }) => {
               </Button>
             </Modal.Footer>
           </Modal>
-        </li>
+        </ListGroupItem>
       )}
     </>
   );

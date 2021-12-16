@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
 const LoginForm = (props) => {
-  const { handleSubmit, register } = props;
+  const { handleSubmit, register, isWrongCredentials } = props;
 
   return (
     <>
-      <Form className="card p-4 m-4" onSubmit={handleSubmit}>
+      <Form className="card p-5 m-4" onSubmit={handleSubmit}>
         <h1 className="text-center fw-bold">Login</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             placeholder="Enter Email"
+            type="email"
             {...register('email', { required: true })}
           />
           <Form.Text className="text-muted">
@@ -36,6 +37,8 @@ const LoginForm = (props) => {
         <Link to="/signup" className="text-center">
           Sign-up now!
         </Link>
+
+        {isWrongCredentials && <h1>Wrong Credentials</h1>}
       </Form>
     </>
   );
