@@ -12,6 +12,7 @@ export const UserProvider = (props) => {
     () => ({
       user,
       refreshUser,
+      setUser,
     }),
     [user]
   );

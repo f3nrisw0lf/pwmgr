@@ -4,11 +4,11 @@ import { QueryClientProvider } from 'react-query';
 
 import ClientProvider from './helper/ClientProvider';
 import { UserProvider } from './helper/UserContext';
-import LoginForm from './components/LoginForm';
+import LoginFormContainer from './containers/LoginFormContainer';
 import Password from './components/Password';
 import Home from './pages/Home';
 import PrivateRoute from './components/PrivateRoute';
-import Nav from './components/Navigation';
+import NavContainer from './containers/NavContainer';
 import SignupForm from './components/SignupForm';
 
 const App = () => {
@@ -16,10 +16,10 @@ const App = () => {
     <QueryClientProvider client={ClientProvider}>
       <BrowserRouter>
         <UserProvider>
-          <Nav />
+          <NavContainer />
           <Routes>
             <Route path="/" element={<Password />} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/login" element={<LoginFormContainer />} />
             <Route path="/signup" element={<SignupForm />} />
             <Route path="/home" element={<PrivateRoute component={<Home />} />} />
           </Routes>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import useInput from '../hooks/useInput';
 
@@ -12,7 +13,7 @@ const SignupForm = () => {
   };
 
   return (
-    <Form className="card m-2 p-4">
+    <Form className="card m-4 p-4">
       <h1 className="text-center fw-bold">Signup</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email Address</Form.Label>
@@ -25,12 +26,12 @@ const SignupForm = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" onChange={setPassword} />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" className="mb-2">
         Submit
       </Button>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
+      <Link to="/login" className="text-center">
+        Already have an account?
+      </Link>
     </Form>
   );
 };

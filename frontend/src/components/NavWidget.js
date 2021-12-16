@@ -1,20 +1,9 @@
-import { React, useContext, useEffect } from 'react';
+import { React } from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import getLogout from '../hooks/useLogout';
-import { UserContext } from '../helper/UserContext';
 
-const Navigation = () => {
-  const { mutate, isSuccess } = getLogout();
-  const { user, refreshUser } = useContext(UserContext);
-
-  useEffect(() => {
-    refreshUser();
-  });
-
-  const logout = () => {
-    mutate();
-  };
+const Navigation = (props) => {
+  const { user, logout } = props;
 
   return (
     <>
