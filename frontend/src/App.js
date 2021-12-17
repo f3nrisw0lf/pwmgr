@@ -7,8 +7,8 @@ import { UserProvider } from './helper/UserContext';
 import LoginFormContainer from './containers/LoginFormContainer';
 import SignupFormContainer from './containers/SignupFormContainer';
 import NavContainer from './containers/NavContainer';
-import Password from './components/Password';
-import Home from './pages/Home';
+import UserProfile from './pages/UserProfile';
+import Landing from './pages/Landing';
 import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
@@ -18,10 +18,10 @@ const App = () => {
         <UserProvider>
           <NavContainer />
           <Routes>
-            <Route path="/" element={<Password />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/login" element={<LoginFormContainer />} />
             <Route path="/signup" element={<SignupFormContainer />} />
-            <Route path="/home" element={<PrivateRoute component={<Home />} />} />
+            <Route path="/home" element={<PrivateRoute component={<UserProfile />} />} />
           </Routes>
         </UserProvider>
       </BrowserRouter>

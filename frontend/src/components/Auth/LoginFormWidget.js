@@ -45,7 +45,7 @@ const LoginForm = (props) => {
           Sign-up now!
         </Link>
 
-        {isWrongCredentials && <Alert>Wrong Credentials</Alert>}
+        {isWrongCredentials && <Alert variant="danger">Wrong Credentials</Alert>}
       </Form>
     </>
   );

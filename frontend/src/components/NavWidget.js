@@ -9,14 +9,18 @@ const Navigation = (props) => {
     <>
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+          <Link to="/">
+            <Navbar.Brand className="fw-bold">PWMGR</Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
               navbarScroll>
-              <Nav.Link href="#action1">Home</Nav.Link>
+              <Link to="/home">
+                <Nav.Item as="li">Home</Nav.Item>
+              </Link>
               <Nav.Link href="#" disabled>
                 Link
               </Nav.Link>
