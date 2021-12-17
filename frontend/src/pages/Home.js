@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div className="m-2 p-4">
-      <h1>Your Passwords</h1>
+      <h1 className="fw-bold">Your Passwords</h1>
       <ListGroup>
         {status === 'success' &&
           data.passwords.map((password) => {

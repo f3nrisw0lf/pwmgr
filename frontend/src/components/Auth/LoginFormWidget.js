@@ -1,9 +1,14 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 const LoginForm = (props) => {
   const { handleSubmit, register, isWrongCredentials } = props;
+  const [hidden, setHidden] = useState(true);
+
+  const hiddenClick = () => {
+    setHidden((prevValue) => !prevValue);
+  };
 
   return (
     <>
@@ -23,10 +28,12 @@ const LoginForm = (props) => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="password"
+            type={hidden ? 'password' : 'text'}
             placeholder="Enter Password"
             {...register('password', { required: true })}
           />
+          <input type="checkbox" onChange={hiddenClick} />
+          <Form.Label className="mx-2">Visibility</Form.Label>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" name="rememberMe" label="Remember me" />
@@ -38,7 +45,7 @@ const LoginForm = (props) => {
           Sign-up now!
         </Link>
 
-        {isWrongCredentials && <h1>Wrong Credentials</h1>}
+        {isWrongCredentials && <Alert>Wrong Credentials</Alert>}
       </Form>
     </>
   );

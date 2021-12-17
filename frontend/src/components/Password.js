@@ -11,11 +11,12 @@ const Password = ({ password }) => {
     <>
       {password && (
         <ListGroupItem className="d-grid gap-2" key={password._id}>
-          <Button variant="secondary" size="lg" onClick={handleShow}>
-            {password.name}
-            <br></br>
-            {password.urls[0]}
-          </Button>
+          <Card>
+            <Button variant="light" size="lg" onClick={handleShow}>
+              <p className="text-capitalize fw-bold">{password.name}</p>
+              {password.urls[0]}
+            </Button>
+          </Card>
 
           <Modal show={show} onHide={handleClose}>
             <Card body>

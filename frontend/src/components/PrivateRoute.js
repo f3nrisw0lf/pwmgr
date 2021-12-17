@@ -1,11 +1,11 @@
-import { React, useEffect, useContext } from 'react';
+import { React, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserContext } from '../helper/UserContext';
 
 const PrivateRoute = ({ component }) => {
-  const { user, refreshUser } = useContext(UserContext);
+  const { user: isUserLoggedIn } = useContext(UserContext);
 
-  return !user ? <Navigate to="/login" /> : component;
+  return isUserLoggedIn ? component : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
