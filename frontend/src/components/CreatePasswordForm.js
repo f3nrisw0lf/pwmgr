@@ -6,7 +6,7 @@ const LoginForm = (props) => {
   const { handleClose } = props;
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
-      url: [{ value: 'ENTER URL' }],
+      url: [{ value: '' }],
     },
   });
   const { fields, append } = useFieldArray({ control, name: 'url' });
@@ -18,8 +18,8 @@ const LoginForm = (props) => {
 
   return (
     <>
-      <Form className="card p-5 m-4" onSubmit={handleSubmit}>
-        <h1 className="text-center fw-bold">Login</h1>
+      <Form className="card p-5 m-4" onSubmit={handleSubmit((data) => console.log(data))}>
+        <h1 className="text-center fw-bold">Add Password</h1>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
@@ -55,21 +55,20 @@ const LoginForm = (props) => {
           {fields.map((field, index) => {
             return (
               <li key={field.id}>
-                <Form.Control
-                  placeholder={field.value}
-                  {...register(`url.${index}.value`)}
-                />
+                <Form.Control {...register(`url.${index}.value`)} />
               </li>
             );
           })}
-          <Button onClick={() => append({ value: 'ENTER URL' })}>ADD</Button>
+          <Button onClick={() => append({ value: '' })}>ADD</Button>
         </Form.Group>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">Save Password</Button>
+          <Button type="submit" variant="primary">
+            Save Password
+          </Button>
         </Modal.Footer>
       </Form>
     </>

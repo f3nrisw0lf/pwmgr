@@ -11,7 +11,7 @@ const CreatePasswordWidget = () => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
+        Add Password
       </Button>
 
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
