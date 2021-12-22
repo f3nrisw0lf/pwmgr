@@ -1,5 +1,6 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
+import CreatePasswordWidget from '../components/CreatePasswordWidget';
 import Passwords from '../components/Passwords';
 import useGetUser from '../hooks/useGetUser';
 
@@ -12,6 +13,7 @@ const Home = () => {
       <ListGroup>
         {status == 'success' && <Passwords passwords={data.passwords} status={status} />}
       </ListGroup>
+      <CreatePasswordWidget />
     </div>
   );
 };
