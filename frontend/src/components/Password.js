@@ -1,11 +1,13 @@
 import { useState, React } from 'react';
 import { Modal, Form, Button, ListGroupItem } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
+import useDeletePassword from '../hooks/Password/useDeletePassword';
 
 const Password = ({ password: data }) => {
-  const { name, password, username, urls } = data;
+  const { _id, name, password, username, urls } = data;
   const [hidden, setHidden] = useState(true);
   const [modalShow, setModalShow] = useState(false);
+  const { mutate: deletePassword } = useDeletePassword();
 
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
@@ -27,9 +29,19 @@ const Password = ({ password: data }) => {
     <>
       {password && (
         <div>
-          <Button variant="primary" onClick={() => setModalShow(true)}>
-            {name}
-          </Button>
+          <div className="d-flex">
+            <Button
+              variant="primary"
+              className="flex-grow-1"
+              onClick={() => setModalShow(true)}>
+              {name}
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => deletePassword({ passwordID: _id })}>
+              Delete
+            </Button>
+          </div>
           <Modal
             size="lg"
             show={modalShow}
@@ -82,7 +94,9 @@ const Password = ({ password: data }) => {
                   </Form.Group>
 
                   <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setModalShow(false)}>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setModalShow(false)}>
                       Close
                     </Button>
                     <Button type="submit" variant="primary">
