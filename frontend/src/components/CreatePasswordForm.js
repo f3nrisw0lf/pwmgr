@@ -7,10 +7,10 @@ const LoginForm = (props) => {
   const { handleClose } = props;
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
-      url: [{ value: '' }],
+      urls: [{ value: '' }],
     },
   });
-  const { fields, append } = useFieldArray({ control, name: 'url' });
+  const { fields, append } = useFieldArray({ control, name: 'urls' });
   const [hidden, setHidden] = useState(true);
   const { mutate: createPassword } = useCreatePassword();
 
@@ -19,13 +19,18 @@ const LoginForm = (props) => {
   };
 
   const formOnSubmit = (data) => {
-    const { url, ...rest } = data;
+    const { urls, ...rest } = data;
 
-    const formatUrls = url.map((url) => url.value);
+    // Format URLS to fit the API create-password needs. ex. urls: ["lorem", "ipsu"]
+    const formatUrls = urls.map((url) => url.value);
 
     const password = { urls: formatUrls, ...rest };
 
+    // API Call to add in the database
     createPassword(password);
+
+    // Modal Close
+    handleClose();
   };
 
   return (
@@ -67,7 +72,7 @@ const LoginForm = (props) => {
           {fields.map((field, index) => {
             return (
               <li key={field.id}>
-                <Form.Control {...register(`url.${index}.value`)} />
+                <Form.Control {...register(`urls.${index}.value`)} />
               </li>
             );
           })}

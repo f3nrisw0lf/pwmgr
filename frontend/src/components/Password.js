@@ -14,13 +14,13 @@ const Password = ({ password: data }) => {
       name: name,
       password: password,
       username: username,
-      url: urls.map((url) => {
+      urls: urls.map((url) => {
         return { value: url };
       }),
     },
   });
 
-  const { fields, append } = useFieldArray({ control, name: 'url' });
+  const { fields, append } = useFieldArray({ control, name: 'urls' });
 
   const hiddenClick = () => setHidden((prevValue) => !prevValue);
   const onSubmit = (data) => {
@@ -97,7 +97,7 @@ const Password = ({ password: data }) => {
                     {fields.map((field, index) => {
                       return (
                         <li key={field.id}>
-                          <Form.Control {...register(`url.${index}.value`)} />
+                          <Form.Control {...register(`urls.${index}.value`)} />
                         </li>
                       );
                     })}
