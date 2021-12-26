@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useMutation } from 'react-query';
 
-const useDeletePassword = () => {
+export default function useDeletePassword() {
   return useMutation(
     ({ passwordID }) =>
       axios
@@ -17,6 +17,4 @@ const useDeletePassword = () => {
       },
     }
   );
-};
-
-export default useDeletePassword;
+}

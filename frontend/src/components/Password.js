@@ -23,18 +23,27 @@ const Password = ({ password: data }) => {
   const { fields, append } = useFieldArray({ control, name: 'url' });
 
   const hiddenClick = () => setHidden((prevValue) => !prevValue);
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const { urls, ...rest } = data;
+
+    const formatUrls = urls.map((url) => url.value);
+
+    const password = { urls: formatUrls, ...rest };
+
+    console.log(password);
+  };
 
   return (
     <>
       {password && (
-        <div>
-          <div className="d-flex">
+        <div className="my-2">
+          <div className="d-flex gap-2">
             <Button
-              variant="primary"
+              variant="dark"
               className="flex-grow-1"
               onClick={() => setModalShow(true)}>
-              {name}
+              <h5 className="fw-bold">{name}</h5> <br></br>
+              <h6>{username}</h6>
             </Button>
             <Button
               variant="danger"
@@ -49,7 +58,9 @@ const Password = ({ password: data }) => {
             centered>
             <Modal.Body>
               <ListGroupItem className="d-grid gap-2" key={password._id}>
-                <Form className="card p-5 m-4" onSubmit={onSubmit}>
+                <Form
+                  className="card p-5 m-4"
+                  onSubmit={handleSubmit(onSubmit)}>
                   <h1 className="text-center fw-bold">Add Password</h1>
 
                   <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
+import useCreatePassword from '../hooks/Password/useCreatePassword';
 
 const LoginForm = (props) => {
   const { handleClose } = props;
@@ -11,14 +12,25 @@ const LoginForm = (props) => {
   });
   const { fields, append } = useFieldArray({ control, name: 'url' });
   const [hidden, setHidden] = useState(true);
+  const { mutate: createPassword } = useCreatePassword();
 
   const hiddenClick = () => {
     setHidden((prevValue) => !prevValue);
   };
 
+  const formOnSubmit = (data) => {
+    const { url, ...rest } = data;
+
+    const formatUrls = url.map((url) => url.value);
+
+    const password = { urls: formatUrls, ...rest };
+
+    createPassword(password);
+  };
+
   return (
     <>
-      <Form className="card p-5 m-4" onSubmit={handleSubmit((data) => console.log(data))}>
+      <Form className="card p-5 m-4" onSubmit={handleSubmit(formOnSubmit)}>
         <h1 className="text-center fw-bold">Add Password</h1>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
