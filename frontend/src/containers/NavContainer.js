@@ -1,21 +1,17 @@
 import { React, useContext, useEffect } from 'react';
-import getLogout from '../hooks/useLogout';
+import useLogout from '../hooks/Auth/useLogout';
 import { UserContext } from '../helper/UserContext';
 import NavWidget from '../components/NavWidget';
 
 const NavContainer = () => {
-  const { mutate } = getLogout();
+  const { mutate: logoutUser } = useLogout();
   const { user, refreshUser } = useContext(UserContext);
 
   useEffect(() => {
     refreshUser();
   });
 
-  const logout = () => {
-    mutate();
-  };
-
-  return <NavWidget user={user} logout={logout} />;
+  return <NavWidget user={user} logout={logoutUser} />;
 };
 
 export default NavContainer;

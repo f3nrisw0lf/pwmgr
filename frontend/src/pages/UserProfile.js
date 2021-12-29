@@ -2,7 +2,7 @@ import { useEffect, React } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import CreatePasswordWidget from '../components/CreatePasswordWidget';
 import Passwords from '../components/Passwords';
-import useGetUser from '../hooks/useGetUser';
+import useGetUser from '../hooks/User/useGetUser';
 
 const Home = () => {
   const { data, refetch, status } = useGetUser();
