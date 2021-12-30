@@ -1,9 +1,9 @@
 import { React, useState, useContext, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { UserContext } from '../helper/UserContext';
-import LoginFormWidget from '../components/Auth/LoginFormWidget';
-import useLogin from '../hooks/Auth/useLogin';
+import { UserContext } from 'src/helper/UserContext';
+import LoginFormWidget from 'src/components/Auth/LoginFormWidget';
+import useLogin from 'src/hooks/Auth/useLogin';
 
 const LoginForm = () => {
   const { mutate: loginUser, data, onSuccess } = useLogin();

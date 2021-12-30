@@ -1,20 +1,14 @@
 import { useMutation } from 'react-query';
-import axios from 'axios';
+import { logoutUser } from 'src/api/authApi';
 import Cookies from 'js-cookie';
 
 export default function useLoginUser() {
-  return useMutation(
-    () =>
-      axios
-        .get('http://localhost:5050/auth/logout', { withCredentials: true })
-        .then((res) => res.data),
-    {
-      onSuccess: (data) => {
-        Cookies.set('user', '', {
-          expires: 365,
-          sameSite: 'Lax',
-        });
-      },
-    }
-  );
+  return useMutation(logoutUser, {
+    onSuccess: () => {
+      Cookies.set('user', '', {
+        expires: 365,
+        sameSite: 'Lax',
+      });
+    },
+  });
 }

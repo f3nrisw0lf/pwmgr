@@ -1,4 +1,4 @@
-import { createPassword } from '../../api/userApi';
+import { createPassword } from 'src/api/userApi';
 import { useMutation } from 'react-query';
 
 export default function useCreatePassword() {

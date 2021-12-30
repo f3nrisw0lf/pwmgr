@@ -1,7 +1,7 @@
 import { useState, React } from 'react';
 import { Modal, Form, Button, ListGroupItem } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
-import useDeletePassword from '../hooks/User/useDeletePassword';
+import useDeletePassword from 'src/hooks/User/useDeletePassword';
 
 const Password = ({ password: data }) => {
   const { _id, name, password, username, urls } = data;

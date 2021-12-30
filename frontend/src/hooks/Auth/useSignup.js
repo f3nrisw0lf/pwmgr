@@ -1,20 +1,10 @@
 import { useMutation } from 'react-query';
-import axios from 'axios';
+import { signupUser } from 'src/api/authApi';
 
 export default function useLoginUser() {
-  return useMutation(
-    ({ nickname, email, password }) =>
-      axios
-        .post(
-          'http://localhost:5050/auth/signup',
-          { nickname, email, password },
-          { withCredentials: true }
-        )
-        .then((res) => res.data),
-    {
-      onSuccess: (data) => {
-        console.log(data);
-      },
-    }
-  );
+  return useMutation(signupUser, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
 }

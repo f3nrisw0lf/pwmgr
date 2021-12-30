@@ -1,4 +1,4 @@
-import { deletePassword } from '../../api/userApi';
+import { deletePassword } from 'src/api/userApi';
 import { useMutation } from 'react-query';
 
 export default function useDeletePassword() {

@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
-import useCreatePassword from '../hooks/User/useCreatePassword';
+import useCreatePassword from 'src/hooks/User/useCreatePassword';
 
 const LoginForm = (props) => {
   const { handleClose } = props;
