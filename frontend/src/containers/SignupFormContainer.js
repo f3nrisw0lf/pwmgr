@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
-import useSignup from '../hooks/Auth/useSignup';
-import SignupFormWidget from '../components/Auth/SignupFormWidget';
+import useSignup from 'src/hooks/Auth/useSignup';
+import SignupFormWidget from 'src/components/Auth/SignupFormWidget';
 
 const SignupForm = () => {
   const { handleSubmit, register } = useForm();
@@ -17,7 +17,10 @@ const SignupForm = () => {
       {isSignupSuccess ? (
         <Navigate to="/" />
       ) : (
-        <SignupFormWidget handleSubmit={handleSubmit(onSubmit)} register={register} />
+        <SignupFormWidget
+          handleSubmit={handleSubmit(onSubmit)}
+          register={register}
+        />
       )}
     </>
   );

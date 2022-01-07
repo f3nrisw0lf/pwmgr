@@ -12,10 +12,10 @@ const logoutUser = () =>
   );
 
 const signupUser = ({ nickname, email, password }) =>
-  AxiosInstance.post(
-    'http://localhost:5050/auth/signup',
-    { nickname, email, password },
-    { withCredentials: true }
-  ).then((res) => res.data);
+  AxiosInstance.post('http://localhost:5050/auth/signup', {
+    nickname,
+    email,
+    password,
+  }).then((res) => res.data);
 
 export { loginUser, logoutUser, signupUser };

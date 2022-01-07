@@ -2,14 +2,14 @@ import { React } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 
-import ClientProvider from './helper/ClientProvider';
-import { UserProvider } from './helper/UserContext';
-import LoginFormContainer from './containers/LoginFormContainer';
-import SignupFormContainer from './containers/SignupFormContainer';
-import NavContainer from './containers/NavContainer';
-import UserProfile from './pages/UserProfile';
-import Landing from './pages/Landing';
-import PrivateRoute from './components/PrivateRoute';
+import ClientProvider from 'src/helper/ClientProvider';
+import { UserProvider } from 'src/helper/UserContext';
+import LoginFormContainer from 'src/containers/LoginFormContainer';
+import SignupFormContainer from 'src/containers/SignupFormContainer';
+import NavContainer from 'src/containers/NavContainer';
+import UserProfile from 'src/pages/UserProfile';
+import Landing from 'src/pages/Landing';
+import PrivateRoute from 'src/components/PrivateRoute';
 
 const App = () => {
   return (
@@ -21,7 +21,10 @@ const App = () => {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<LoginFormContainer />} />
             <Route path="/signup" element={<SignupFormContainer />} />
-            <Route path="/home" element={<PrivateRoute component={<UserProfile />} />} />
+            <Route
+              path="/home"
+              element={<PrivateRoute component={<UserProfile />} />}
+            />
           </Routes>
         </UserProvider>
       </BrowserRouter>

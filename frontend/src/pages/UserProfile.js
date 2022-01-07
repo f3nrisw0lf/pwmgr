@@ -1,8 +1,8 @@
 import { useEffect, React } from 'react';
 import { ListGroup } from 'react-bootstrap';
-import CreatePasswordWidget from '../components/CreatePasswordWidget';
-import Passwords from '../components/Passwords';
-import useGetUser from '../hooks/User/useGetUser';
+import CreatePasswordWidget from 'src/components/CreatePasswordWidget';
+import Passwords from 'src/components/Passwords';
+import useGetUser from 'src/hooks/User/useGetUser';
 
 const Home = () => {
   const { data, refetch, status } = useGetUser();
