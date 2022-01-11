@@ -2,7 +2,7 @@ import { hash as _hash } from 'argon2';
 import User from '../model/User.js';
 
 const signup = async (req, res) => {
-  const { fname, lname, nickname, email, password } = req.body;
+  const { nickname, email, password } = req.body;
 
   // Transfrom to Hash
   const hash = await _hash(password);
@@ -14,16 +14,14 @@ const signup = async (req, res) => {
 
     if (isUserNotExisting) {
       const query = new User({
-        fname,
-        lname,
         nickname,
         email,
         password: hash,
         secret,
       });
 
-      const save = await query.save();
-      await res.json(save);
+      await query.save();
+      await res.json('Successful');
     } else res.json('Existing');
   } catch {
     res.json('Error');

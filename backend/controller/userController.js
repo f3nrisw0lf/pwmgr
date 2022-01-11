@@ -1,7 +1,7 @@
 import crypto from 'crypto-js';
 
 import User from '../model/User.js';
-import { encryptPasswords } from './cryptoController.js';
+import { encryptPasswords, encryptPassword } from './cryptoController.js';
 
 const { AES, enc } = crypto;
 
@@ -38,25 +38,32 @@ const deletePassword = async (req, res) => {
 };
 
 const updatePassword = async (req, res) => {
-  const { password } = req.body;
-  const query = await User.findOneAndUpdate(
-    // eslint-disable-next-line no-underscore-dangle
-    { 'passwords._id': password._id },
-    { $set: { 'passwords.$': password } }
-  );
+  const { password, username, name, urls, _id } = req.body;
 
-  return res.json(query);
-};
+  if (req.isAuthenticated()) {
+    const userID = req.session.passport.user;
+    const { secret } = await User.findById(userID);
+    const ciphered = await encryptPassword(password, secret);
+    const query = await User.findOneAndUpdate(
+      // eslint-disable-next-line no-underscore-dangle
+      { 'passwords._id': _id },
+      {
+        $set: {
+          'passwords.$': {
+            name,
+            username,
+            urls,
+            _id,
+            password: ciphered.toString(),
+          },
+        },
+      }
+    );
 
-const decrypt = (req, res) => {
-  const { passwords } = req.body;
+    return res.json(query);
+  }
 
-  const decryptedPasswords = passwords.map(({ cipherText }) => {
-    const decrypted = AES.decrypt(cipherText, 'ASDASD');
-    return decrypted.toString(enc.Utf8);
-  });
-
-  res.json(decryptedPasswords);
+  return res.json('NOT AUTH');
 };
 
 const getUserData = async (req, res) => {
@@ -67,6 +74,7 @@ const getUserData = async (req, res) => {
     const decryptedPasswords = passwords.map((password) => {
       const decrypted = AES.decrypt(password.password, secret);
       return {
+        // eslint-disable-next-line no-underscore-dangle
         _id: password._id,
         name: password.name,
         urls: password.urls,
@@ -81,4 +89,4 @@ const getUserData = async (req, res) => {
   return res.json(req.isAuthenticated());
 };
 
-export { savePasswords, decrypt, getUserData, deletePassword, updatePassword };
+export { savePasswords, getUserData, deletePassword, updatePassword };

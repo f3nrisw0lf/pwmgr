@@ -1,8 +1,7 @@
 import crypto from 'crypto-js';
 import mongoose from 'mongoose';
-import User from '../model/User.js';
 
-const { AES, enc } = crypto;
+const { AES } = crypto;
 
 const encryptPasswords = async (passwords, secret) => {
   // Get User Secret or Salt
@@ -21,17 +20,10 @@ const encryptPasswords = async (passwords, secret) => {
   return ciphered;
 };
 
-const decrypt = async (req, res) => {
-  const { user } = req.session.passport;
+const encryptPassword = async (password, secret) => {
+  // Get User Secret or Salt
+  const cipher = AES.encrypt(password, secret);
 
-  const { passwords } = await User.findById(user);
-
-  const decryptedPasswords = passwords.map(async (password) => {
-    const decrypted = AES.decrypt(password.cipher, 'ASDASD');
-    return decrypted.toString(enc.Utf8);
-  });
-
-  res.json(decryptedPasswords);
+  return cipher;
 };
-
-export { encryptPasswords, decrypt };
+export { encryptPasswords, encryptPassword };

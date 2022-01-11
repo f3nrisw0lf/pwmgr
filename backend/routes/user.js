@@ -2,18 +2,18 @@ import { Router } from 'express';
 
 import {
   savePasswords,
-  decrypt,
   getUserData,
   deletePassword,
+  updatePassword,
 } from '../controller/userController.js';
 
 const router = Router();
 
 router.post('/add-password', savePasswords);
 
-router.post('/delete-password', deletePassword);
+router.post('/update-password', updatePassword);
 
-router.get('/decrypt-password', decrypt);
+router.post('/delete-password', deletePassword);
 
 router.get('/user-data', getUserData);
 
