@@ -2,12 +2,14 @@ import { useState, React } from 'react';
 import { Modal, Form, Button, ListGroupItem } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
 import useDeletePassword from 'src/hooks/User/useDeletePassword';
+import useUpdatePassword from 'src/hooks/User/useUpdatePassword';
 
 const Password = ({ password: data }) => {
   const { _id, name, password, username, urls } = data;
   const [hidden, setHidden] = useState(true);
   const [modalShow, setModalShow] = useState(false);
   const { mutate: deletePassword } = useDeletePassword();
+  const { mutate: updatePassword } = useUpdatePassword();
 
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
@@ -23,14 +25,20 @@ const Password = ({ password: data }) => {
   const { fields, append } = useFieldArray({ control, name: 'urls' });
 
   const hiddenClick = () => setHidden((prevValue) => !prevValue);
+
   const onSubmit = (data) => {
     const { urls, ...rest } = data;
 
+    // Format Urls from [{value: <url>}] => [<url>]
     const formatUrls = urls.map((url) => url.value);
 
+    // Format for API call - { _id, name, username, password}
     const password = { urls: formatUrls, ...rest };
 
-    console.log(password);
+    // API Call
+    updatePassword({ ...password, _id });
+
+    setModalShow(false);
   };
 
   return (
@@ -57,11 +65,11 @@ const Password = ({ password: data }) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered>
             <Modal.Body>
-              <ListGroupItem className="d-grid gap-2" key={password._id}>
+              <ListGroupItem className="d-grid gap-2" key={_id}>
                 <Form
                   className="card p-5 m-4"
                   onSubmit={handleSubmit(onSubmit)}>
-                  <h1 className="text-center fw-bold">Add Password</h1>
+                  <h1 className="text-center fw-bold">{name}</h1>
 
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Name</Form.Label>

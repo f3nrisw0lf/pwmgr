@@ -8,9 +8,14 @@ const createPassword = (password) =>
     (res) => res.data
   );
 
+const updatePassword = (password) =>
+  AxiosInstance.post('/user/update-password', { ...password }).then(
+    (res) => res.data
+  );
+
 const deletePassword = (passwordID) =>
   AxiosInstance.post('/user/delete-password', { passwordID }).then(
     (res) => res.data
   );
 
-export { getUserData, createPassword, deletePassword };
+export { getUserData, updatePassword, createPassword, deletePassword };
