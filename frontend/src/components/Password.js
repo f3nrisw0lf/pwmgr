@@ -26,7 +26,7 @@ const Password = ({ password: data }) => {
 
   const hiddenClick = () => setHidden((prevValue) => !prevValue);
 
-  const onSubmit = (data) => {
+  const onFormSubmit = (data) => {
     const { urls, ...rest } = data;
 
     // Format Urls from [{value: <url>}] => [<url>]
@@ -64,11 +64,14 @@ const Password = ({ password: data }) => {
             show={modalShow}
             aria-labelledby="contained-modal-title-vcenter"
             centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Password</Modal.Title>
+            </Modal.Header>
             <Modal.Body>
               <ListGroupItem className="d-grid gap-2" key={_id}>
                 <Form
                   className="card p-5 m-4"
-                  onSubmit={handleSubmit(onSubmit)}>
+                  onSubmit={handleSubmit(onFormSubmit)}>
                   <h1 className="text-center fw-bold">{name}</h1>
 
                   <Form.Group className="mb-3" controlId="formBasicEmail">

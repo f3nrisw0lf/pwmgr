@@ -14,10 +14,11 @@ const CreatePasswordWidget = () => {
         Add Password
       </Button>
 
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}>
         <Modal.Body>
           <CreatePasswordForm handleClose={handleClose} />
         </Modal.Body>
