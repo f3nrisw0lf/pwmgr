@@ -16,6 +16,7 @@ const CreatePasswordWidget = () => {
 
       <Modal
         show={show}
+        size="lg"
         onHide={handleClose}
         backdrop="static"
         keyboard={false}>

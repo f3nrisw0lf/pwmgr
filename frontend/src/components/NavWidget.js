@@ -1,16 +1,16 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Container, Nav, Button, Form, FormControl } from 'react-bootstrap';
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 
 const Navigation = (props) => {
   const { user, logout } = props;
 
   return (
     <>
-      <Navbar bg="dark" expand="lg" variant="dark">
+      <Navbar bg="dark" expand="lg" variant="dark" className="px-4">
         <Container fluid>
-          <Link to="/">
-            <Navbar.Brand className="fw-bold">PWMGR</Navbar.Brand>
+          <Link className="fw-bold navbar-brand" to="/">
+            PWMGR
           </Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -18,30 +18,29 @@ const Navigation = (props) => {
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
               navbarScroll>
-              <Link to="/home">
-                <Nav.Item as="li">Home</Nav.Item>
+              <Link className="nav-link" to="/home">
+                Home
               </Link>
               <Nav.Link href="#" disabled>
                 Link
               </Nav.Link>
             </Nav>
-            <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
             {user ? (
               <Button className="mx-2" onClick={logout}>
                 Logout
               </Button>
             ) : (
-              <Link to="/login">
-                <Button className="mx-2">Login</Button>
-              </Link>
+              <>
+                <Link to="/signup">
+                  <Button className="" variant="outline-success">
+                    Signup
+                  </Button>
+                </Link>
+
+                <Link to="/login">
+                  <Button className="mx-2">Login</Button>
+                </Link>
+              </>
             )}
           </Navbar.Collapse>
         </Container>

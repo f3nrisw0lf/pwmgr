@@ -6,7 +6,7 @@ const SignupForm = (props) => {
   const { handleSubmit, register } = props;
 
   return (
-    <Form className="card m-4 p-4" onSubmit={handleSubmit}>
+    <Form className="card m-4 p-5" onSubmit={handleSubmit}>
       <h1 className="text-center fw-bold">Signup</h1>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">

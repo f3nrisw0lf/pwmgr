@@ -15,7 +15,7 @@ const Home = () => {
     <div className="m-2 p-4">
       <h1 className="fw-bold">Your Passwords</h1>
       <ListGroup>
-        {status == 'success' && (
+        {status == 'success' && data.passwords && (
           <Passwords passwords={data.passwords} status={status} />
         )}
       </ListGroup>

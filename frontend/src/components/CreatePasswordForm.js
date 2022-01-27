@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Form, Button, Modal } from 'react-bootstrap';
+import { Form, Button, Modal, Stack } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
 import passwordGenerator from 'generate-password';
 import useCreatePassword from 'src/hooks/User/useCreatePassword';
@@ -67,7 +67,7 @@ const LoginForm = (props) => {
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <div className="d-flex">
+          <Stack direction="horizontal">
             <Form.Control
               className="flex-grow-1"
               type={hidden ? 'password' : 'text'}
@@ -78,10 +78,13 @@ const LoginForm = (props) => {
               <input type="checkbox" onChange={hiddenClick} />
               <Form.Label className="mx-2">Visibility</Form.Label>
             </div>
-          </div>
-          <Button className="flex-shrink-1 my-1" onClick={generatePassword}>
-            Generate Password
-          </Button>
+            <Button
+              className="flex-shrink-1 my-1"
+              size="sm"
+              onClick={generatePassword}>
+              Generate Password
+            </Button>
+          </Stack>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
