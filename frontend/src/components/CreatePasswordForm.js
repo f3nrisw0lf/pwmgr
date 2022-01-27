@@ -44,7 +44,7 @@ const LoginForm = (props) => {
 
   return (
     <>
-      <Form className="card p-5 m-4" onSubmit={handleSubmit(formOnSubmit)}>
+      <Form className="p-5 m-4" onSubmit={handleSubmit(formOnSubmit)}>
         <h1 className="text-center fw-bold">Add Password</h1>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -65,7 +65,7 @@ const LoginForm = (props) => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-2" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Stack direction="horizontal">
             <Form.Control
@@ -79,7 +79,7 @@ const LoginForm = (props) => {
               <Form.Label className="mx-2">Visibility</Form.Label>
             </div>
             <Button
-              className="flex-shrink-1 my-1"
+              className="flex-shrink-1"
               size="sm"
               onClick={generatePassword}>
               Generate Password
@@ -91,12 +91,15 @@ const LoginForm = (props) => {
           <Form.Label>URL</Form.Label>
           {fields.map((field, index) => {
             return (
-              <li key={field.id}>
-                <Form.Control {...register(`urls.${index}.value`)} />
-              </li>
+              <Form.Control
+                key={field.id}
+                {...register(`urls.${index}.value`)}
+              />
             );
           })}
-          <Button onClick={() => append({ value: '' })}>ADD</Button>
+          <Button className="mt-2" onClick={() => append({ value: '' })}>
+            ADD
+          </Button>
         </Form.Group>
 
         <Modal.Footer>

@@ -1,5 +1,5 @@
 import { useState, React } from 'react';
-import { Modal, Form, Button, ListGroupItem } from 'react-bootstrap';
+import { Modal, Form, Button, ListGroup } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
 import useDeletePassword from 'src/hooks/User/useDeletePassword';
 import useUpdatePassword from 'src/hooks/User/useUpdatePassword';
@@ -59,6 +59,7 @@ const Password = ({ password: data }) => {
               Delete
             </Button>
           </div>
+
           <Modal
             size="lg"
             show={modalShow}
@@ -104,12 +105,17 @@ const Password = ({ password: data }) => {
                   <Form.Label>URLs</Form.Label>
                   {fields.map((field, index) => {
                     return (
-                      <li key={field.id}>
-                        <Form.Control {...register(`urls.${index}.value`)} />
-                      </li>
+                      <Form.Control
+                        key={field.id}
+                        {...register(`urls.${index}.value`)}
+                      />
                     );
                   })}
-                  <Button onClick={() => append({ value: '' })}>ADD</Button>
+                  <Button
+                    className="mt-2"
+                    onClick={() => append({ value: '' })}>
+                    ADD
+                  </Button>
                 </Form.Group>
 
                 <Modal.Footer>
