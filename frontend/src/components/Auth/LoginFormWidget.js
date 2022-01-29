@@ -35,17 +35,17 @@ const LoginForm = (props) => {
           <input type="checkbox" onChange={hiddenClick} />
           <Form.Label className="mx-2">Visibility</Form.Label>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" name="rememberMe" label="Remember me" />
-        </Form.Group>
         <Button variant="primary" type="submit" className="mb-2">
           Submit
         </Button>
+        {isWrongCredentials && (
+          <Alert className="mt-2" variant="danger">
+            Wrong Credentials: Either Username or Password.
+          </Alert>
+        )}
         <Link to="/signup" className="text-center">
           Sign-up now!
         </Link>
-
-        {isWrongCredentials && <Alert variant="danger">Wrong Credentials</Alert>}
       </Form>
     </>
   );
