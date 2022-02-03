@@ -15,6 +15,6 @@ router.post('/update-password', updatePassword);
 
 router.post('/delete-password', deletePassword);
 
-router.get('/user-data', getUserData);
+router.get('/me', getUserData);
 
 export default router;

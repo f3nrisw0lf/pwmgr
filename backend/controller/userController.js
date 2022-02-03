@@ -69,7 +69,7 @@ const updatePassword = async (req, res) => {
 const getUserData = async (req, res) => {
   if (req.isAuthenticated()) {
     const userID = req.session.passport.user;
-    const { passwords, secret } = await User.findById(userID);
+    const { passwords, nickname, secret } = await User.findById(userID);
 
     const decryptedPasswords = passwords.map((password) => {
       const decrypted = AES.decrypt(password.password, secret);
@@ -83,7 +83,7 @@ const getUserData = async (req, res) => {
       };
     });
 
-    return res.json({ passwords: decryptedPasswords });
+    return res.json({ nickname, passwords: decryptedPasswords });
   }
 
   return res.json(req.isAuthenticated());

@@ -31,7 +31,7 @@ const signup = async (req, res) => {
 const logout = (req, res) => {
   // console.log(req.session.passport.user);
   req.logout();
-  res.json({ message: 'Logged Out' });
+  res.json({ code: 200, message: 'Logged Out' });
   // console.log(req.session.passport.user);
 };
 
