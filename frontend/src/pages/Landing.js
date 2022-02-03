@@ -29,51 +29,43 @@ const Landing = () => {
         <h1 className="text-center text-white">Features</h1>
         <Row className="p-5 gap-2">
           <Col sm className="">
-            <Card className="py-5">
+            <Card className="py-5 h-100">
               <Card.Body className="text-center">
                 <img className="w-25 mb-4" src={encrypt} />
-                <Card.Title className="fw-bold">Lorem Ipsum</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  Card Subtitle
-                </Card.Subtitle>
+                <Card.Title className="fw-bold">Encrypted Data</Card.Title>
                 <Card.Text>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Reprehenderit deleniti sint earum rerum alias, iure hic. Atque
-                  praesentium eligendi sapiente!
+                  Engineered with AES 256-Bit Encryption and Argon2
+                  Cryptographic Hashing Algorthm, a trusted state-of-the-art
+                  military and industry grade security algorithms in accordance
+                  with “zero-knowledge” technology.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
 
           <Col sm className="">
-            <Card className="py-5">
+            <Card className="py-5 h-100">
               <Card.Body className="text-center">
                 <img className="w-25 mb-4" src={easyToUse} />
-                <Card.Title className="fw-bold">Lorem Ipsum</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  Card Subtitle
-                </Card.Subtitle>
+                <Card.Title className="fw-bold">Easy to Use</Card.Title>
                 <Card.Text>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Reprehenderit deleniti sint earum rerum alias, iure hic. Atque
-                  praesentium eligendi sapiente!
+                  You can use to store passwords and accounts - whenever and
+                  wherever.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
 
           <Col sm className="">
-            <Card className="py-5">
+            <Card className="py-5 h-100">
               <Card.Body className="text-center">
                 <img className="w-25 mb-4" src={passwordGenerate} />
-                <Card.Title className="fw-bold">Lorem Ipsum</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  Card Subtitle
-                </Card.Subtitle>
+                <Card.Title className="fw-bold">
+                  Generate Secure Password
+                </Card.Title>
                 <Card.Text>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
-                  assumenda itaque impedit deleniti adipisci temporibus cum
-                  tempora molestias! Tempore, nam.
+                  PWMGR can fabricate ideal passwords that is random and as a
+                  primary layer of defense.
                 </Card.Text>
               </Card.Body>
             </Card>

@@ -1,8 +1,9 @@
 import { useState, React } from 'react';
-import { Modal, Form, Button, ListGroup } from 'react-bootstrap';
+import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
 import useDeletePassword from 'src/hooks/User/useDeletePassword';
 import useUpdatePassword from 'src/hooks/User/useUpdatePassword';
+import questionMarkPhoto from 'src/assets/question_mark.png';
 
 const Password = ({ password: data }) => {
   const { _id, name, password, username, urls } = data;
@@ -42,10 +43,14 @@ const Password = ({ password: data }) => {
   };
 
   const getFavicon = () => {
-    const url = new URL(urls[0]);
-    const faviconURL = url.protocol + url.host + '/favicon.ico';
+    try {
+      const url = new URL(urls[0]);
+      const faviconURL = url.protocol + url.host + '/favicon.ico';
 
-    return faviconURL;
+      return faviconURL;
+    } catch (error) {
+      return '';
+    }
   };
 
   const [favicon, setFavicon] = useState(getFavicon());
@@ -68,6 +73,10 @@ const Password = ({ password: data }) => {
                 style={faviconStyle}
                 className="my-1 align-self-center"
                 alt="image"
+                onError={({ target }) => {
+                  target.onerror = null;
+                  target.src = questionMarkPhoto;
+                }}
               />
               <h5 className="fw-bold mb-3">{name}</h5>
               <h6 className="">{username}</h6>
