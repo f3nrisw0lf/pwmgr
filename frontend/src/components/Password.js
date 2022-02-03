@@ -41,22 +41,42 @@ const Password = ({ password: data }) => {
     setModalShow(false);
   };
 
+  const getFavicon = () => {
+    const url = new URL(urls[0]);
+    const faviconURL = url.protocol + url.host + '/favicon.ico';
+
+    return faviconURL;
+  };
+
+  const [favicon, setFavicon] = useState(getFavicon());
+
+  const faviconStyle = {
+    width: '30px',
+    height: '30px',
+  };
   return (
     <>
       {password && (
         <div className="my-2">
-          <div className="d-flex gap-2">
+          <div className="d-flex gap-1">
             <Button
               variant="dark"
               className="flex-grow-1"
               onClick={() => setModalShow(true)}>
-              <h5 className="fw-bold">{name}</h5> <br></br>
-              <h6>{username}</h6>
+              <img
+                src={favicon}
+                style={faviconStyle}
+                className="my-1 align-self-center"
+                alt="image"
+              />
+              <h5 className="fw-bold mb-3">{name}</h5>
+              <h6 className="">{username}</h6>
             </Button>
             <Button
+              size="lg"
               variant="danger"
               onClick={() => deletePassword({ passwordID: _id })}>
-              Delete
+              <h4>x️</h4>
             </Button>
           </div>
 
@@ -65,11 +85,8 @@ const Password = ({ password: data }) => {
             show={modalShow}
             aria-labelledby="contained-modal-title-vcenter"
             centered>
-            <Modal.Header closeButton>
-              <Modal.Title></Modal.Title>
-            </Modal.Header>
             <Modal.Body>
-              <Form className="p-5 m-4" onSubmit={handleSubmit(onFormSubmit)}>
+              <Form className="p-2 m-4" onSubmit={handleSubmit(onFormSubmit)}>
                 <h1 className="text-center fw-bold">{name}</h1>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -90,7 +107,7 @@ const Password = ({ password: data }) => {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-1" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type={hidden ? 'password' : 'text'}
@@ -98,23 +115,22 @@ const Password = ({ password: data }) => {
                     {...register('password', { required: true })}
                   />
                   <input type="checkbox" onChange={hiddenClick} />
-                  <Form.Label className="mx-2">Visibility</Form.Label>
+                  <Form.Label className="mt-1 mx-2">Visibility</Form.Label>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>URLs</Form.Label>
+                  <Form.Label>URL</Form.Label>
                   {fields.map((field, index) => {
                     return (
                       <Form.Control
                         key={field.id}
+                        className="mb-1"
                         {...register(`urls.${index}.value`)}
                       />
                     );
                   })}
-                  <Button
-                    className="mt-2"
-                    onClick={() => append({ value: '' })}>
-                    ADD
+                  <Button className="" onClick={() => append({ value: '' })}>
+                    + ADD URL
                   </Button>
                 </Form.Group>
 

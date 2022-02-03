@@ -19,7 +19,8 @@ const CreatePasswordWidget = () => {
         size="lg"
         onHide={handleClose}
         backdrop="static"
-        keyboard={false}>
+        keyboard={false}
+        centered>
         <Modal.Body>
           <CreatePasswordForm handleClose={handleClose} />
         </Modal.Body>

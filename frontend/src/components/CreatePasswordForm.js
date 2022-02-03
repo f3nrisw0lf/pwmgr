@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Form, Button, Modal, Stack } from 'react-bootstrap';
+import { Form, Button, Modal, InputGroup } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
 import passwordGenerator from 'generate-password';
 import useCreatePassword from 'src/hooks/User/useCreatePassword';
@@ -44,7 +44,7 @@ const LoginForm = (props) => {
 
   return (
     <>
-      <Form className="p-5 m-4" onSubmit={handleSubmit(formOnSubmit)}>
+      <Form className="p-3 m-4" onSubmit={handleSubmit(formOnSubmit)}>
         <h1 className="text-center fw-bold">Add Password</h1>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -67,14 +67,14 @@ const LoginForm = (props) => {
 
         <Form.Group className="mb-2" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Stack direction="horizontal">
+          <InputGroup>
             <Form.Control
               className="flex-grow-1"
               type={hidden ? 'password' : 'text'}
               placeholder="Enter Password"
               {...register('password', { required: true })}
             />
-            <div className="d-flex flex-column">
+            <div className="d-flex card flex-column pt-2">
               <input type="checkbox" onChange={hiddenClick} />
               <Form.Label className="mx-2">Visibility</Form.Label>
             </div>
@@ -84,7 +84,7 @@ const LoginForm = (props) => {
               onClick={generatePassword}>
               Generate Password
             </Button>
-          </Stack>
+          </InputGroup>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -93,12 +93,13 @@ const LoginForm = (props) => {
             return (
               <Form.Control
                 key={field.id}
+                className="mb-1"
                 {...register(`urls.${index}.value`)}
               />
             );
           })}
-          <Button className="mt-2" onClick={() => append({ value: '' })}>
-            ADD
+          <Button className="" onClick={() => append({ value: '' })}>
+            + ADD URL
           </Button>
         </Form.Group>
 

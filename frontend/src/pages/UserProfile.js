@@ -13,10 +13,12 @@ const Home = () => {
 
   return (
     <div className="m-2 p-4">
-      <h1 className="fw-bold">Your Passwords</h1>
       <ListGroup>
         {status == 'success' && data.passwords && (
-          <Passwords passwords={data.passwords} status={status} />
+          <>
+            <h1 className="fw-bold">Welcome {data.nickname}! 🎉</h1>
+            <Passwords passwords={data.passwords} status={status} />
+          </>
         )}
       </ListGroup>
       <CreatePasswordWidget />

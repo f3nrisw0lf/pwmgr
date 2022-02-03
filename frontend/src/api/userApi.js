@@ -1,7 +1,6 @@
 import AxiosInstance from 'src/helper/AxiosInstance';
 
-const getUserData = () =>
-  AxiosInstance.get('/user/user-data').then((res) => res.data);
+const getUserData = () => AxiosInstance.get('/user/me').then((res) => res.data);
 
 const createPassword = (password) =>
   AxiosInstance.post('/user/add-password', { passwords: [password] }).then(

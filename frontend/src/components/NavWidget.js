@@ -26,9 +26,7 @@ const Navigation = (props) => {
               </Nav.Link>
             </Nav>
             {user ? (
-              <Button className="mx-2" onClick={logout}>
-                Logout
-              </Button>
+              <Button onClick={logout}>Logout</Button>
             ) : (
               <>
                 <Link to="/signup">
