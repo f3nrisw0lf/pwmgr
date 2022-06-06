@@ -2,31 +2,52 @@
 
 **PWMGR** is a web password manager using the **MERN(MongoDB-Express-ReactJS-Node)** technology stack. It uses the Argon2 Hashing Algorithm and the AES-256 Encryption Algorithm.
 
+## Landing Page
+
+![Landing Page](assets/png/landing.png)
+
+## Presentation
+
+[![Presentation](assets/png/youtube.png)](https://www.youtube.com/watch?v=E80Jhz9gMtU)
+
 ### Installation
+
+  <details>
+  <summary>Node JS Backend</summary>
+
+1.  Change Directory:
+
+    ```bash
+    $ cd backend
+    ```
+
+2.  NPM Install:
+
+    ```bash
+    $ npm install
+    ```
+
+  </details>
 
   <details>
   <summary>React JS Frontend</summary>
 
-  1. Change Directory:
-      ```bash
-      $ cd frontend
-      ```
+1.  Change Directory:
 
-  2. Git Clone:
+    ```bash
+    $ cd frontend
+    ```
 
-      ```bash
-      $ git clone https://github.com/f3nrisw0lf/pwmgr
-      ```
+2.  NPM Install:
 
-  3. NPM Install:
+    ```bash
+    $ npm install
+    ```
 
-      ```bash
-      $ npm install
-      ```
+3.  Start:
 
-  4. Start:
+        ```bash
+        $ npm run fullstack
+        ```
 
-      ```bash
-      $ npm start
-      ```
-  </details>
+    </details>
